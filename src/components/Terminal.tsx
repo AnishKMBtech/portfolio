@@ -22,7 +22,7 @@ const Terminal = () => {
   const commands: Record<string, JSX.Element> = {
     whoami: (
       <div className="space-y-2">
-        <h1 className="text-4xl font-mono font-bold text-white mb-2">Hi there!</h1>
+        <h1 className="text-4xl font-mono font-bold text-white mb-2">Hi there!(type "help" for commands)</h1>
         <h2 className="text-2xl font-mono text-gray-300 mb-4">I'm Anish K M</h2>
         <p className="text-gray-400">AI & DS Undergrad • AI Developer • Research Freak</p>
         <p className="text-gray-400">Based in Chennai, India</p>
