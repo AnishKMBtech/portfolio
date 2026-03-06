@@ -1,5 +1,5 @@
 import React from "react";
-import { HorizontalTimeline } from "@/components/ui/horizontal-timeline";
+import { VerticalTimeline } from "@/components/ui/vertical-timeline";
 
 export const TimelinePage = () => {
   const data = [
@@ -49,7 +49,7 @@ export const TimelinePage = () => {
   ];
   return (
     <div className="min-h-screen w-full bg-neutral-950">
-      <HorizontalTimeline data={data} />
+      <VerticalTimeline data={data} />
     </div>
   );
 };
