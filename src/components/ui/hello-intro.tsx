@@ -8,7 +8,6 @@ const greetings = [
   "Ciao",
   "Hallo",
   "नमस्ते",
-  "வணக்கம்",
 ];
 
 export const HelloIntro = ({ onComplete }: { onComplete: () => void }) => {
