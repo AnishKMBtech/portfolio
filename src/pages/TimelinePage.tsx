@@ -33,6 +33,9 @@ export const TimelinePage = () => {
           <p className="text-zinc-100 dark:text-white text-base md:text-lg font-normal mb-0 leading-relaxed">
             Completed Cloud Practitioner and GitHub Foundation certifications. Learned Docker and Kubernetes and made Arch Linux as primary, hosted many tech events as the president of the Data Varse club of our colleges for school and college students about what is AI and what is the current shift and presented what I got to understand.
           </p>
+          <p className="text-zinc-100 dark:text-white text-base md:text-lg font-normal mb-0 leading-relaxed">
+            Done my first intern at Ismo biophotonics, IITM Research Park as AI & ML Intern.
+          </p>
         </div>
       ),
     },
