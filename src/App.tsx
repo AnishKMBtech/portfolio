@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { Home, Clock, Briefcase, Brain } from 'lucide-react';
 import { NavBar } from "@/components/ui/tubelight-navbar";
 import { LandingPage } from "@/pages/LandingPage";
+import { JourneyPage } from "@/pages/JourneyPage";
 import { TimelinePage } from "@/pages/TimelinePage";
 import { ProjectsPage } from "@/pages/ProjectsPage";
 import { AIPage } from "@/pages/AIPage";
@@ -13,6 +14,7 @@ const App = () => {
 
   const navItems = [
     { name: 'Home', url: '/', icon: Home },
+    { name: 'Journey', url: '/journey', icon: Clock },
     { name: 'Timeline', url: '/timeline', icon: Clock },
     { name: 'Projects', url: '/projects', icon: Briefcase },
     { name: 'AI', url: '/ai', icon: Brain }
@@ -32,6 +34,7 @@ const App = () => {
         >
           <Routes location={location}>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/journey" element={<JourneyPage />} />
             <Route path="/timeline" element={<TimelinePage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/ai" element={<AIPage />} />

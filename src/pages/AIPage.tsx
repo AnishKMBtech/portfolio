@@ -135,7 +135,7 @@ export const AIPage = () => {
       <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-blue-500/5 blur-[160px] rounded-full pointer-events-none"></div>
       <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-emerald-500/5 blur-[160px] rounded-full pointer-events-none"></div>
 
-      <div className="max-w-6xl mx-auto w-full flex-1 flex flex-col relative z-10">
+      <div className="w-full px-4 md:px-8 flex-1 flex flex-col relative z-10">
         <AnimatePresence mode="wait">
           {!hasStarted ? (
             <motion.div
@@ -177,16 +177,16 @@ export const AIPage = () => {
               key="chat"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="flex-1 flex flex-col w-full"
+              className="flex-1 flex flex-col w-full max-w-5xl mx-auto"
             >
               {/* Minimal Chat Header */}
-              <div className="flex items-center justify-between mb-20 pb-10 border-b border-white/5">
+              <div className="flex items-center justify-between mb-10 pb-5 border-b border-white/5">
                 <button 
                   onClick={clearChat}
                   className="group flex items-center gap-4 text-zinc-500 hover:text-zinc-100 transition-colors"
                 >
-                  <ArrowLeft size={28} className="group-hover:-translate-x-1 transition-transform" />
-                  <span className="text-base font-mono uppercase tracking-widest">Back</span>
+                  <ArrowLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
+                  <span className="text-sm font-mono uppercase tracking-widest">Back</span>
                 </button>
                 <button 
                   onClick={clearChat}
@@ -198,7 +198,7 @@ export const AIPage = () => {
 
               {/* Messages Area */}
               <Conversation className="flex-1 pr-4 chat-scrollbar">
-                <ConversationContent className="space-y-6">
+                <ConversationContent className="space-y-8">
                   {messages.map((message) => (
                     <motion.div
                       key={message.id}
@@ -209,28 +209,28 @@ export const AIPage = () => {
                         from={message.role}
                         className={message.role === 'user' ? 'items-end' : 'items-start'}
                       >
-                        <div className="flex flex-col gap-4 w-full">
+                        <div className="flex flex-col gap-2 w-full">
                           {message.reasoning && (
-                            <div className="mb-4 p-6 bg-zinc-900/30 rounded-3xl border border-white/5 max-w-3xl">
-                              <div className="flex items-center gap-3 text-[10px] font-mono text-zinc-700 uppercase tracking-widest mb-4">
-                                <Brain size={16} className="text-zinc-800" />
+                            <div className="mb-2 p-4 bg-zinc-900/50 rounded-2xl border border-white/5 max-w-full">
+                              <div className="flex items-center gap-2 text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-2">
+                                <Brain size={14} className="text-zinc-700" />
                                 Thought Process
                               </div>
-                              <div className="text-base text-zinc-600 italic font-serif leading-relaxed">
+                              <div className="text-sm text-zinc-500 italic font-serif leading-relaxed">
                                 {message.reasoning}
                               </div>
                             </div>
                           )}
                           <MessageContent className={cn(
-                            "text-base leading-relaxed max-w-3xl",
+                            "text-base leading-relaxed w-full",
                             message.role === 'user' 
-                              ? 'bg-zinc-800 text-zinc-100 rounded-2xl rounded-tr-none ml-auto' 
+                              ? 'bg-zinc-800 text-zinc-100 rounded-2xl rounded-tr-none ml-auto w-fit max-w-[80%]' 
                               : 'bg-transparent border-none text-zinc-300 p-0'
                           )}>
                             <div className="markdown-body prose prose-invert prose-base max-w-none">
                               <ReactMarkdown>{message.content}</ReactMarkdown>
                             </div>
-                            <div className="mt-4 text-[10px] font-mono opacity-30">
+                            <div className="mt-2 text-[10px] font-mono opacity-30">
                               {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                             </div>
                           </MessageContent>
@@ -254,8 +254,8 @@ export const AIPage = () => {
                       animate={{ opacity: 1 }}
                       className="flex"
                     >
-                      <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2 mr-auto">
-                        <Loader2 className="animate-spin text-zinc-500" size={16} />
+                      <div className="p-3 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2 mr-auto">
+                        <Loader2 className="animate-spin text-zinc-500" size={14} />
                         <span className="text-xs text-zinc-600 font-mono italic">Thinking...</span>
                       </div>
                     </motion.div>
@@ -264,13 +264,13 @@ export const AIPage = () => {
               </Conversation>
 
               {/* Chat Input */}
-              <div className="mt-20 pt-16 border-t border-white/5">
+              <div className="mt-10 pt-8 border-t border-white/5">
                 <div className="max-w-4xl mx-auto w-full">
                   <PromptInputBox 
                     onSend={(msg) => handleSend(msg)} 
                     isLoading={isLoading}
                     placeholder="Message..."
-                    className="bg-zinc-900/30 border-white/5 py-4 px-6"
+                    className="bg-zinc-900/50 border-white/10 py-3 px-5"
                   />
                 </div>
               </div>
