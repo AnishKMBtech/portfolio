@@ -1,0 +1,19 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/chat/groq"
+  to = "/.netlify/functions/chat-groq"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

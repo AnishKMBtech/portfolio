@@ -1,0 +1,73 @@
+import React, { useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { Home, Clock, Briefcase, Brain, BookOpen } from 'lucide-react';
+import { NavBar } from "@/components/ui/tubelight-navbar";
+import { LandingPage } from "@/pages/LandingPage";
+import { JourneyPage } from "@/pages/JourneyPage";
+import { TimelinePage } from "@/pages/TimelinePage";
+import { ProjectsPage } from "@/pages/ProjectsPage";
+import { ExperiencePage } from "@/pages/ExperiencePage";
+import { AIPage } from "@/pages/AIPage";
+import { BlogsPage } from "@/pages/BlogsPage";
+import { AnimatePresence, motion } from "framer-motion";
+import { HelloIntro } from "@/components/ui/hello-intro";
+
+const App = () => {
+  const location = useLocation();
+  const [showIntro, setShowIntro] = useState(() => {
+    return !window.localStorage.getItem('intro-completed');
+  });
+
+  const navItems = [
+    { name: 'Home', url: '/', icon: Home },
+    { name: 'Journey', url: '/journey', icon: Clock },
+    { name: 'Timeline', url: '/timeline', icon: Clock },
+    { name: 'Experience', url: '/experience', icon: Briefcase },
+    { name: 'Projects', url: '/projects', icon: Briefcase },
+    { name: 'AI', url: '/ai', icon: Brain },
+    { name: 'Blogs', url: '/blogs', icon: BookOpen }
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 font-sans selection:bg-zinc-500/30">
+      <AnimatePresence>
+        {showIntro && (
+          <HelloIntro
+            onComplete={() => {
+              window.localStorage.setItem('intro-completed', 'true');
+              setShowIntro(false);
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      {!showIntro && (
+        <>
+          <NavBar items={navItems} />
+          
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={location.pathname}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Routes location={location}>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/journey" element={<JourneyPage />} />
+                <Route path="/timeline" element={<TimelinePage />} />
+                <Route path="/experience" element={<ExperiencePage />} />
+                <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/ai" element={<AIPage />} />
+                <Route path="/blogs" element={<BlogsPage />} />
+              </Routes>
+            </motion.div>
+          </AnimatePresence>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default App;
