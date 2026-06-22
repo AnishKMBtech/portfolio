@@ -8,7 +8,7 @@ import { OpenAI } from "openai";
 dotenv.config();
 
 function loadGroqKey() {
-  const envKey = process.env.GROQ_API_KEY || "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";
+  const envKey = process.env.GROQ_API_KEY;
   if (envKey) {
     return envKey;
   }
